@@ -16,7 +16,7 @@ const Success = () => {
         setUser(docSnap.data());
       } else {
         alert("Please login");
-        nav("/login");
+        nav("/login/1");
       }
     });
   };
