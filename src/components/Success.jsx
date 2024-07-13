@@ -30,7 +30,7 @@ const Success = () => {
   const logout=async()=>{
     try{
       await auth.signOut();
-      nav("/login")
+      nav("/login/1")
 
     }catch(e){
       console.log(e);
