@@ -107,7 +107,7 @@ const Login = () => {
             className="w-12 h-12 cursor-pointer"
           />
           <span>
-            Don't have an account? <Link to="/register">Register</Link>
+            Don't have an account? <Link to="/register/1">Register</Link>
           </span>
         </div>
       </div>

@@ -134,7 +134,7 @@ const Register = () => {
             className="w-12 h-12 cursor-pointer"
           />
           <span>
-            Have an account? <Link to="/login">Login</Link>
+            Have an account? <Link to="/login/1">Login</Link>
           </span>
         </div>
       </div>
