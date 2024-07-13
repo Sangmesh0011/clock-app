@@ -1,8 +1,8 @@
 import { MdCloudDone } from "react-icons/md"; 
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { auth, db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { auth } from "../firebase";
+// import { doc, getDoc } from "firebase/firestore";
 
 const Success = () => {
   const nav = useNavigate();
@@ -10,12 +10,14 @@ const Success = () => {
   const [user, setUser] = useState(null);
   const fetchUser = async () => {
     auth.onAuthStateChanged(async (user) => {
-      const ref = doc(db, "Users", user.uid);
-      const docSnap = await getDoc(ref);
-      if (docSnap.exists()) {
-        setUser(docSnap.data());
+      // const ref = doc(db, "Users", user.uid);
+      // const docSnap = await getDoc(ref);
+      if (user) {
+        // docSnap.exists()
+        console.log("SUCSESS")
+        setUser(user);
       } else {
-        alert("Please login");
+        // alert("Please login");
         nav("/login/1");
       }
     });
@@ -40,7 +42,7 @@ const Success = () => {
     <div className="w-3/5 flex flex-col justify-center items-center">
     <MdCloudDone className="w-2/6 h-2/6"/>
     <h2 className="font-bold text-3xl mb-11 text-green-800">Log in was Successful</h2>
-    {user?<span className="text-gray-400">Welcome <span className="font-bold text-xl text-green-500 ml-3">{user.name}</span></span>:null}
+    {user?<span className="text-gray-400">Welcome <span className="font-bold text-xl text-green-500 ml-3">{user.displayName}</span></span>:null}
     <div
       onClick={() => {
         nav(`/tracking/${slideval}`);

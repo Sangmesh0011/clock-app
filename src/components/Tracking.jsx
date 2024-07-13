@@ -1,7 +1,7 @@
 import { RxAvatar } from "react-icons/rx";
 import React, { useState, useEffect } from "react";
-import { auth, db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { auth } from "../firebase";
+// import { doc, getDoc } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 import AnalogClock from "analog-clock-react";
 
@@ -95,12 +95,14 @@ const Tracking = () => {
   const [user, setUser] = useState(null);
   const fetchUser = async () => {
     auth.onAuthStateChanged(async (user) => {
-      const ref = doc(db, "Users", user.uid);
-      const docSnap = await getDoc(ref);
-      if (docSnap.exists()) {
-        setUser(docSnap.data());
+      // const ref = doc(db, "Users", user.uid);
+      // const docSnap = await getDoc(ref);
+      if (user) {
+        // docSnap.exists()
+        console.log(user)
+        setUser(user);
       } else {
-        alert("Please login");
+        // alert("Please login");
         nav("/login/1");
       }
     });
@@ -109,7 +111,7 @@ const Tracking = () => {
   useEffect(() => {
     fetchUser();
     return () => {};
-  });
+  },[]);
 
   const logout = async () => {
     try {
@@ -135,7 +137,7 @@ const Tracking = () => {
         <h2 className="text-4xl font-serif font-bold uppercase">Clock</h2>
         <div className="flex justify-center items-center gap-x-6">
           <span className="hidden md:flex justify-center items-center gap-x-2">
-            <RxAvatar className="w-8 h-8" /> {user ? user.name : ""}
+            <RxAvatar className="w-8 h-8" /> {user ? user.displayName : ""}
           </span>
         <span
             className="px-4 text-center h-auto hover:border-black hover:bg-transparent border-orange-500 text-white hover:text-black bg-orange-500 py-1 rounded-full border-2 font-bold cursor-pointer"

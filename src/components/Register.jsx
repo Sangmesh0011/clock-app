@@ -30,10 +30,12 @@ const Register = () => {
     }
   };
 
-  const loginGoogle = () => {
+  const loginGoogle = async() => {
     const prov = new GoogleAuthProvider();
-    signInWithPopup(auth, prov).then(async (res) => {});
-    nav(`/success/${slideval || 1}`);
+    signInWithPopup(auth, prov).then(async (res) => {
+      console.log(res)
+      nav(`/success/${slideval || 1}`);
+    });
   };
 
   const handleRegister = async (e) => {
@@ -46,8 +48,8 @@ const Register = () => {
           email: user.email,
           name: name,
         });
+        nav(`/success/${slideval || 1}`);
       }
-      nav(`/login/${slideval || 1}`);
     } catch (e) {
       console.log(e);
     }

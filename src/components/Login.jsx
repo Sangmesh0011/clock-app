@@ -21,8 +21,10 @@ const Login = () => {
 
   const loginGoogle = () => {
     const prov = new GoogleAuthProvider();
-    signInWithPopup(auth, prov).then(async (res) => {});
-    nav(`/success/${slideval || 1}`);
+    signInWithPopup(auth, prov).then(async (res) => {
+      console.log(res)
+      nav(`/success/${slideval || 1}`);
+    });
   };
 
   const handleLogin = async (e) => {
